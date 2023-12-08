@@ -72,17 +72,18 @@
     "pyodide": ">=0.21.0-alpha.2",
     "redis": "^4.6.7",
     "replicate": "^0.12.3",
+    "socket.io": "^4.7.2",
+    "sqlite3": "^5.1.6",
     "srt-parser-2": "^1.2.3",
+    "typeorm": "^0.3.17",
     "vm2": "^3.9.19",
     "weaviate-ts-client": "^1.1.0",
     "ws": "^8.9.0",
-    "zod-to-json-schema": "^3.21.4",
-    "socket.io": "^4.7.2",
-    "sqlite3": "^5.1.6",
-    "typeorm": "^0.3.17"
+    "zod-to-json-schema": "^3.21.4"
   },
   "devDependencies": {
-    "@types/gulp": "4.0.9",
+    "@types/crypto-js": "^4.2.1",
+    "@types/lodash": "^4.14.202",
     "@types/node-fetch": "2.6.2",
     "@types/object-hash": "^3.0.2",
     "@types/pg": "^8.10.2",
