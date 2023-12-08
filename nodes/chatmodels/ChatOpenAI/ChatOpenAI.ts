@@ -173,7 +173,7 @@ class ChatOpenAI_ChatModels implements INode {
         const baseOptions = nodeData.inputs?.baseOptions
 
         const credentialData = options.credentialData
-        const openAIApiKey = getCredentialParam('openAIApiKey', credentialData, nodeData)
+        const openAIApiKey = credentialData == null ? options.apiKey : getCredentialParam('openAIApiKey', credentialData, nodeData)
 
         const cache = nodeData.inputs?.cache as BaseCache
 
