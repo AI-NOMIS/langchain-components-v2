@@ -1,6 +1,7 @@
 import { INode, INodeData, INodeParams } from '../../../src/Interface'
 import { TextSplitter } from 'langchain/text_splitter'
 import { CSVLoader } from 'langchain/document_loaders/fs/csv'
+import { fetchFileFromUrl } from '../../../src/utils'
 
 class Csv_DocumentLoaders implements INode {
     label: string
@@ -55,17 +56,23 @@ class Csv_DocumentLoaders implements INode {
 
     async init(nodeData: INodeData): Promise<any> {
         const textSplitter = nodeData.inputs?.textSplitter as TextSplitter
-        const csvFileBase64 = nodeData.inputs?.csvFile as string
+        const csvFileUrls = nodeData.inputs?.csvFile as string
         const columnName = nodeData.inputs?.columnName as string
         const metadata = nodeData.inputs?.metadata
+        const mimeType = "text/csv";
 
         let alldocs = []
         let files: string[] = []
 
-        if (csvFileBase64.startsWith('[') && csvFileBase64.endsWith(']')) {
-            files = JSON.parse(csvFileBase64)
+        if (csvFileUrls.startsWith("[") && csvFileUrls.endsWith("]")) {
+          const filesArray: string[] = JSON.parse(csvFileUrls);
+          filesArray.forEach(async (url) => {
+            const base64 = await fetchFileFromUrl(url, mimeType);
+            files.push(base64);
+          });
         } else {
-            files = [csvFileBase64]
+          const base64 = await fetchFileFromUrl(csvFileUrls, mimeType);
+          files = [base64];
         }
 
         for (const file of files) {

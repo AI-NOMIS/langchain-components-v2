@@ -1,6 +1,7 @@
 import { INode, INodeData, INodeParams } from '../../../src/Interface'
 import { TextSplitter } from 'langchain/text_splitter'
 import { PDFLoader } from 'langchain/document_loaders/fs/pdf'
+import { fetchFileFromUrl } from '../../../src/utils'
 
 class Pdf_DocumentLoaders implements INode {
     label: string
@@ -70,18 +71,24 @@ class Pdf_DocumentLoaders implements INode {
 
     async init(nodeData: INodeData): Promise<any> {
         const textSplitter = nodeData.inputs?.textSplitter as TextSplitter
-        const pdfFileBase64 = nodeData.inputs?.pdfFile as string
+        const pdfFileUrls = nodeData.inputs?.pdfFile as string
         const usage = nodeData.inputs?.usage as string
         const metadata = nodeData.inputs?.metadata
         const legacyBuild = nodeData.inputs?.legacyBuild as boolean
+        const mimeType = "application/pdf";
 
         let alldocs = []
         let files: string[] = []
 
-        if (pdfFileBase64.startsWith('[') && pdfFileBase64.endsWith(']')) {
-            files = JSON.parse(pdfFileBase64)
+        if (pdfFileUrls.startsWith("[") && pdfFileUrls.endsWith("]")) {
+          const filesArray: string[] = JSON.parse(pdfFileUrls);
+          filesArray.forEach(async (url) => {
+            const base64 = await fetchFileFromUrl(url, mimeType);
+            files.push(base64);
+          });
         } else {
-            files = [pdfFileBase64]
+          const base64 = await fetchFileFromUrl(pdfFileUrls, mimeType);
+          files = [base64];
         }
 
         for (const file of files) {

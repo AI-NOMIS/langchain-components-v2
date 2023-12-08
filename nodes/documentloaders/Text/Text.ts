@@ -2,7 +2,7 @@ import { INode, INodeData, INodeOutputsValue, INodeParams } from '../../../src/I
 import { TextSplitter } from 'langchain/text_splitter'
 import { TextLoader } from 'langchain/document_loaders/fs/text'
 import { Document } from 'langchain/document'
-import { handleEscapeCharacters } from '../../../src'
+import { fetchFileFromUrl, handleEscapeCharacters } from '../../../src/utils'
 
 class Text_DocumentLoaders implements INode {
     label: string
@@ -63,17 +63,23 @@ class Text_DocumentLoaders implements INode {
 
     async init(nodeData: INodeData): Promise<any> {
         const textSplitter = nodeData.inputs?.textSplitter as TextSplitter
-        const txtFileBase64 = nodeData.inputs?.txtFile as string
+        const txtFileUrls = nodeData.inputs?.txtFile as string
         const metadata = nodeData.inputs?.metadata
         const output = nodeData.outputs?.output as string
+        const mimeType = "text/plain";
 
         let alldocs = []
         let files: string[] = []
 
-        if (txtFileBase64.startsWith('[') && txtFileBase64.endsWith(']')) {
-            files = JSON.parse(txtFileBase64)
+        if (txtFileUrls.startsWith("[") && txtFileUrls.endsWith("]")) {
+          const filesArray: string[] = JSON.parse(txtFileUrls);
+          filesArray.forEach(async (url) => {
+            const base64 = await fetchFileFromUrl(url, mimeType);
+            files.push(base64);
+          });
         } else {
-            files = [txtFileBase64]
+          const base64 = await fetchFileFromUrl(txtFileUrls, mimeType);
+          files = [base64];
         }
 
         for (const file of files) {

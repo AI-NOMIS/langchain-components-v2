@@ -13,6 +13,15 @@ import { AIMessage, HumanMessage } from 'langchain/schema'
 export const numberOrExpressionRegex = '^(\\d+\\.?\\d*|{{.*}})$' //return true if string consists only numbers OR expression {{}}
 export const notEmptyRegex = '(.|\\s)*\\S(.|\\s)*' //return true if string is not empty or blank
 
+export const fetchFileFromUrl = async (url: string, mimeType: string) => {
+  const filename = url.split("/").at(-1)?.split("?")[0];
+  const res = await fetch(url);
+  const arrayBuffer = await res.arrayBuffer();
+  const buffer = Buffer.from(arrayBuffer);
+  const base64 = buffer.toString("base64");
+  return `data:${mimeType};base64,${base64},filename:${filename}`;
+};
+
 /**
  * Get base classes of components
  *

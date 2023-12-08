@@ -1,6 +1,7 @@
 import { INode, INodeData, INodeParams } from '../../../src/Interface'
 import { TextSplitter } from 'langchain/text_splitter'
 import { DocxLoader } from 'langchain/document_loaders/fs/docx'
+import { fetchFileFromUrl } from '../../../src/utils'
 
 class Docx_DocumentLoaders implements INode {
     label: string
@@ -47,16 +48,23 @@ class Docx_DocumentLoaders implements INode {
 
     async init(nodeData: INodeData): Promise<any> {
         const textSplitter = nodeData.inputs?.textSplitter as TextSplitter
-        const docxFileBase64 = nodeData.inputs?.docxFile as string
+        const docxFileUrls = nodeData.inputs?.docxFile as string
         const metadata = nodeData.inputs?.metadata
+        const mimeType =
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
 
         let alldocs = []
         let files: string[] = []
 
-        if (docxFileBase64.startsWith('[') && docxFileBase64.endsWith(']')) {
-            files = JSON.parse(docxFileBase64)
+        if (docxFileUrls.startsWith("[") && docxFileUrls.endsWith("]")) {
+          const filesArray: string[] = JSON.parse(docxFileUrls);
+          filesArray.forEach(async (url) => {
+            const base64 = await fetchFileFromUrl(url, mimeType);
+            files.push(base64);
+          });
         } else {
-            files = [docxFileBase64]
+          const base64 = await fetchFileFromUrl(docxFileUrls, mimeType);
+          files = [base64];
         }
 
         for (const file of files) {
