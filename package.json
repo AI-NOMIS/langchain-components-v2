@@ -5,8 +5,7 @@
   "main": "dist/src/index",
   "types": "dist/src/index.d.ts",
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch"
+    "build": "npx tsc --noEmit"
   },
   "keywords": [],
   "homepage": "https://flowiseai.com",

@@ -1,14 +1,17 @@
 # Langchain Components
 
 Contain Nodes and Credentials.
+## Note
 
-Install:
+NEVER merge `develop` branch to the `main` branch. The main branch is to regularly patch/pull updates from [Flowise](https://github.com/FlowiseAI/Flowise) repo. Carefully follow the `Steps to deploy` section below.
+
+## Instal
 
 ```bash
 yarn add git+https://github.com/AI-NOMIS/langchain-components-v2.git#v1.0.0
 ```
 
-Steps to deploy:
+## Steps to deploy
 
 - run `yarn build` -> to make sure there are no build and type errors
 - commit and push your changes

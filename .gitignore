@@ -1,5 +1,6 @@
 node_modules
 dist
+packages
 .aws-sam
 coverage
 apidoc
@@ -11,3 +12,4 @@ apidoc.json
 *.DS_Store
 *.png
 *.svg
+*.jpg
