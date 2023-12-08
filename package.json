@@ -5,8 +5,7 @@
   "main": "dist/src/index",
   "types": "dist/src/index.d.ts",
   "scripts": {
-    "build": "npx tsc",
-    "prepare": "husky install"
+    "build": "npx tsc"
   },
   "keywords": [],
   "homepage": "https://flowiseai.com",
