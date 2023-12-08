@@ -72,7 +72,7 @@ class Figma_DocumentLoaders implements INode {
         const nodeIds = (nodeData.inputs?.nodeIds as string)?.trim().split(',') || []
         const fileKey = nodeData.inputs?.fileKey as string
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const accessToken = getCredentialParam('accessToken', credentialData, nodeData)
 
         const figmaOptions: FigmaLoaderParams = {

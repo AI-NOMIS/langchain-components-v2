@@ -111,7 +111,7 @@ class ChatHuggingFace_ChatModels implements INode {
         const endpoint = nodeData.inputs?.endpoint as string
         const cache = nodeData.inputs?.cache as BaseCache
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const huggingFaceApiKey = getCredentialParam('huggingFaceApiKey', credentialData, nodeData)
 
         const obj: Partial<HFInput> = {

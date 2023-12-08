@@ -92,7 +92,7 @@ class Chroma_Existing_VectorStores implements INode {
         const topK = nodeData.inputs?.topK as string
         const k = topK ? parseFloat(topK) : 4
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const chromaApiKey = getCredentialParam('chromaApiKey', credentialData, nodeData)
 
         const chromaMetadataFilter = nodeData.inputs?.chromaMetadataFilter

@@ -123,7 +123,7 @@ class UnstructuredFolder_DocumentLoaders implements INode {
 
         const obj: UnstructuredLoaderOptions = { apiUrl: unstructuredAPIUrl }
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const unstructuredAPIKey = getCredentialParam('unstructuredAPIKey', credentialData, nodeData)
         if (unstructuredAPIKey) obj.apiKey = unstructuredAPIKey
 

@@ -110,7 +110,7 @@ class HuggingFaceInference_LLMs implements INode {
         const frequencyPenalty = nodeData.inputs?.frequencyPenalty as string
         const endpoint = nodeData.inputs?.endpoint as string
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const huggingFaceApiKey = getCredentialParam('huggingFaceApiKey', credentialData, nodeData)
 
         const cache = nodeData.inputs?.cache as BaseCache

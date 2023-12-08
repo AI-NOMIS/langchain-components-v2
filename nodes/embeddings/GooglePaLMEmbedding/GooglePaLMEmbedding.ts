@@ -49,7 +49,7 @@ class GooglePaLMEmbedding_Embeddings implements INode {
     async init(nodeData: INodeData, _: string, options: ICommonObject): Promise<any> {
         const modelName = nodeData.inputs?.modelName as string
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const googleMakerSuiteKey = getCredentialParam('googleMakerSuiteKey', credentialData, nodeData)
 
         const obj: Partial<GooglePaLMEmbeddingsParams> = {

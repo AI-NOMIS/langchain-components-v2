@@ -154,7 +154,7 @@ class OpenAI_LLMs implements INode {
         const basePath = nodeData.inputs?.basepath as string
         const baseOptions = nodeData.inputs?.baseOptions
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const openAIApiKey = getCredentialParam('openAIApiKey', credentialData, nodeData)
 
         const cache = nodeData.inputs?.cache as BaseCache

@@ -109,7 +109,7 @@ class Postgres_VectorStores implements INode {
     //@ts-ignore
     vectorStoreMethods = {
         async upsert(nodeData: INodeData, options: ICommonObject): Promise<void> {
-            const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+            const credentialData = options.credentialData
             const user = getCredentialParam('user', credentialData, nodeData)
             const password = getCredentialParam('password', credentialData, nodeData)
             const _tableName = nodeData.inputs?.tableName as string
@@ -164,7 +164,7 @@ class Postgres_VectorStores implements INode {
     }
 
     async init(nodeData: INodeData, _: string, options: ICommonObject): Promise<any> {
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const user = getCredentialParam('user', credentialData, nodeData)
         const password = getCredentialParam('password', credentialData, nodeData)
         const _tableName = nodeData.inputs?.tableName as string

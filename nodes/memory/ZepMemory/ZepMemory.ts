@@ -142,7 +142,7 @@ const initalizeZep = async (nodeData: INodeData, options: ICommonObject): Promis
         sessionId = nodeData.inputs?.sessionId
     }
 
-    const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+    const credentialData = options.credentialData
     const apiKey = getCredentialParam('apiKey', credentialData, nodeData)
 
     const obj: ZepMemoryInput & ZepMemoryExtendedInput = {

@@ -87,7 +87,7 @@ class Airtable_Agents implements INode {
         const returnAll = nodeData.inputs?.returnAll as boolean
         const limit = nodeData.inputs?.limit as string
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const accessToken = getCredentialParam('accessToken', credentialData, nodeData)
 
         let airtableData: ICommonObject[] = []

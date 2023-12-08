@@ -53,7 +53,7 @@ class HuggingFaceInferenceEmbedding_Embeddings implements INode {
         const modelName = nodeData.inputs?.modelName as string
         const endpoint = nodeData.inputs?.endpoint as string
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const huggingFaceApiKey = getCredentialParam('huggingFaceApiKey', credentialData, nodeData)
 
         const obj: Partial<HuggingFaceInferenceEmbeddingsParams> = {

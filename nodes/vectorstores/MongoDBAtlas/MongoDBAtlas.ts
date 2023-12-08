@@ -112,7 +112,7 @@ class MongoDBAtlas_VectorStores implements INode {
     //@ts-ignore
     vectorStoreMethods = {
         async upsert(nodeData: INodeData, options: ICommonObject): Promise<void> {
-            const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+            const credentialData = options.credentialData
             const databaseName = nodeData.inputs?.databaseName as string
             const collectionName = nodeData.inputs?.collectionName as string
             const indexName = nodeData.inputs?.indexName as string
@@ -155,7 +155,7 @@ class MongoDBAtlas_VectorStores implements INode {
     }
 
     async init(nodeData: INodeData, _: string, options: ICommonObject): Promise<any> {
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const databaseName = nodeData.inputs?.databaseName as string
         const collectionName = nodeData.inputs?.collectionName as string
         const indexName = nodeData.inputs?.indexName as string

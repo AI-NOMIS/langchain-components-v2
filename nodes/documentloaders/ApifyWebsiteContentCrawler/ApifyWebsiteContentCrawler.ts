@@ -129,7 +129,7 @@ class ApifyWebsiteContentCrawler_DocumentLoaders implements INode {
         }
 
         // Get Apify API token from credential data
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const apifyApiToken = getCredentialParam('apifyApiToken', credentialData, nodeData)
 
         const loader = await ApifyDatasetLoader.fromActorCall('apify/website-content-crawler', input, {

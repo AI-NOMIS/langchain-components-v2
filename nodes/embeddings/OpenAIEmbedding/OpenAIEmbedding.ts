@@ -67,7 +67,7 @@ class OpenAIEmbedding_Embeddings implements INode {
         const timeout = nodeData.inputs?.timeout as string
         const basePath = nodeData.inputs?.basepath as string
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const openAIApiKey = getCredentialParam('openAIApiKey', credentialData, nodeData)
 
         const obj: Partial<OpenAIEmbeddingsParams> & { openAIApiKey?: string } = {

@@ -140,7 +140,7 @@ class S3_DocumentLoaders implements INode {
         const metadata = nodeData.inputs?.metadata
         const narrativeTextOnly = nodeData.inputs?.narrativeTextOnly as boolean
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const accessKeyId = getCredentialParam('awsKey', credentialData, nodeData)
         const secretAccessKey = getCredentialParam('awsSecret', credentialData, nodeData)
 

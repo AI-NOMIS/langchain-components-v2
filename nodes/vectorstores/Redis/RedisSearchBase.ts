@@ -120,7 +120,7 @@ export abstract class RedisSearchBase {
     ): Promise<VectorStore>
 
     async init(nodeData: INodeData, _: string, options: ICommonObject, docs: Document<Record<string, any>>[] | undefined): Promise<any> {
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const indexName = nodeData.inputs?.indexName as string
         let contentKey = nodeData.inputs?.contentKey as string
         let metadataKey = nodeData.inputs?.metadataKey as string

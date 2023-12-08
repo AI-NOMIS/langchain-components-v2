@@ -99,7 +99,7 @@ class AWSBedrockEmbedding_Embeddings implements INode {
             region: iRegion
         }
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         if (credentialData && Object.keys(credentialData).length !== 0) {
             const credentialApiKey = getCredentialParam('awsKey', credentialData, nodeData)
             const credentialApiSecret = getCredentialParam('awsSecret', credentialData, nodeData)

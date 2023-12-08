@@ -75,7 +75,7 @@ class Confluence_DocumentLoaders implements INode {
         const textSplitter = nodeData.inputs?.textSplitter as TextSplitter
         const metadata = nodeData.inputs?.metadata
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const accessToken = getCredentialParam('accessToken', credentialData, nodeData)
         const username = getCredentialParam('username', credentialData, nodeData)
 

@@ -146,7 +146,7 @@ class AWSChatBedrock_ChatModels implements INode {
          * When specified, we override the default provider with configured values.
          * @see https://github.com/aws/aws-sdk-js-v3/blob/main/packages/credential-provider-node/README.md
          */
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         if (credentialData && Object.keys(credentialData).length !== 0) {
             const credentialApiKey = getCredentialParam('awsKey', credentialData, nodeData)
             const credentialApiSecret = getCredentialParam('awsSecret', credentialData, nodeData)

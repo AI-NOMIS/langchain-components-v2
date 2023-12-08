@@ -62,7 +62,7 @@ class RedisEmbeddingsCache implements INode {
         const namespace = nodeData.inputs?.namespace as string
         const underlyingEmbeddings = nodeData.inputs?.embeddings as Embeddings
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const redisUrl = getCredentialParam('redisUrl', credentialData, nodeData)
 
         let client: Redis

@@ -70,7 +70,7 @@ class SearchAPI_DocumentLoaders implements INode {
         const metadata = nodeData.inputs?.metadata
 
         // Fetch the API credentials for this node
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const searchApiKey = getCredentialParam('searchApiKey', credentialData, nodeData)
 
         // Check and parse custom parameters (should be JSON or object)

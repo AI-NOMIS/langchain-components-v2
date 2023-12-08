@@ -111,7 +111,7 @@ class Milvus_VectorStores implements INode {
             const embeddings = nodeData.inputs?.embeddings as Embeddings
 
             // credential
-            const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+            const credentialData = options.credentialData
             const milvusUser = getCredentialParam('milvusUser', credentialData, nodeData)
             const milvusPassword = getCredentialParam('milvusPassword', credentialData, nodeData)
 
@@ -162,7 +162,7 @@ class Milvus_VectorStores implements INode {
         const k = topK ? parseFloat(topK) : 4
 
         // credential
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const milvusUser = getCredentialParam('milvusUser', credentialData, nodeData)
         const milvusPassword = getCredentialParam('milvusPassword', credentialData, nodeData)
 

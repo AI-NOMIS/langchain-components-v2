@@ -33,7 +33,7 @@ class UpstashRedisCache implements INode {
     }
 
     async init(nodeData: INodeData, _: string, options: ICommonObject): Promise<any> {
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const upstashConnectionUrl = getCredentialParam('upstashConnectionUrl', credentialData, nodeData)
         const upstashToken = getCredentialParam('upstashConnectionToken', credentialData, nodeData)
 

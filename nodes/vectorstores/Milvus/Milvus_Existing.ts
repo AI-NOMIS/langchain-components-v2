@@ -104,7 +104,7 @@ class Milvus_Existing_VectorStores implements INode {
         const k = topK ? parseInt(topK, 10) : 4
 
         // credential
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const milvusUser = getCredentialParam('milvusUser', credentialData, nodeData)
         const milvusPassword = getCredentialParam('milvusPassword', credentialData, nodeData)
 

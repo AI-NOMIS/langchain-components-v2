@@ -47,7 +47,7 @@ class RedisCache implements INode {
     async init(nodeData: INodeData, _: string, options: ICommonObject): Promise<any> {
         const ttl = nodeData.inputs?.ttl as string
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const redisUrl = getCredentialParam('redisUrl', credentialData, nodeData)
 
         let client: Redis

@@ -53,7 +53,7 @@ class OpenAPIToolkit_Tools implements INode {
         const model = nodeData.inputs?.model as BaseLanguageModel
         const yamlFileBase64 = nodeData.inputs?.yamlFile as string
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const openAPIToken = getCredentialParam('openAPIToken', credentialData, nodeData)
 
         const splitDataURI = yamlFileBase64.split(',')

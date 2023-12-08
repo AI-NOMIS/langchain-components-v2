@@ -58,7 +58,7 @@ class SerpAPI_DocumentLoaders implements INode {
         const query = nodeData.inputs?.query as string
         const metadata = nodeData.inputs?.metadata
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const serpApiKey = getCredentialParam('serpApiKey', credentialData, nodeData)
         const loader = new SerpAPILoader({ q: query, apiKey: serpApiKey })
         const docs = textSplitter ? await loader.loadAndSplit() : await loader.load()

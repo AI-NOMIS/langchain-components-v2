@@ -33,7 +33,7 @@ class GoogleCustomSearchAPI_Tools implements INode {
     }
 
     async init(nodeData: INodeData, _: string, options: ICommonObject): Promise<any> {
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const googleApiKey = getCredentialParam('googleCustomSearchApiKey', credentialData, nodeData)
         const googleCseId = getCredentialParam('googleCustomSearchApiId', credentialData, nodeData)
         return new GoogleCustomSearch({ apiKey: googleApiKey, googleCSEId: googleCseId })

@@ -106,7 +106,7 @@ class Elasticsearch_VectorStores implements INode {
     //@ts-ignore
     vectorStoreMethods = {
         async upsert(nodeData: INodeData, options: ICommonObject): Promise<void> {
-            const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+            const credentialData = options.credentialData
             const endPoint = getCredentialParam('endpoint', credentialData, nodeData)
             const cloudId = getCredentialParam('cloudId', credentialData, nodeData)
             const indexName = nodeData.inputs?.indexName as string
@@ -142,7 +142,7 @@ class Elasticsearch_VectorStores implements INode {
     }
 
     async init(nodeData: INodeData, _: string, options: ICommonObject): Promise<any> {
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const endPoint = getCredentialParam('endpoint', credentialData, nodeData)
         const cloudId = getCredentialParam('cloudId', credentialData, nodeData)
         const indexName = nodeData.inputs?.indexName as string

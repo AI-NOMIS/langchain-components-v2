@@ -91,7 +91,7 @@ const initalizeUpstashRedis = async (nodeData: INodeData, options: ICommonObject
     let isSessionIdUsingChatMessageId = false
     if (!sessionId && chatId) isSessionIdUsingChatMessageId = true
 
-    const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+    const credentialData = options.credentialData
     const upstashRestToken = getCredentialParam('upstashRestToken', credentialData, nodeData)
 
     const redisChatMessageHistory = new UpstashRedisChatMessageHistory({

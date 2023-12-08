@@ -131,7 +131,7 @@ class WeaviateUpsert_VectorStores implements INode {
         const topK = nodeData.inputs?.topK as string
         const k = topK ? parseFloat(topK) : 4
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const weaviateApiKey = getCredentialParam('weaviateApiKey', credentialData, nodeData)
 
         const clientConfig: any = {

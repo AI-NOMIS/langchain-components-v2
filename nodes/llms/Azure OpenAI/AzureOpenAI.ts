@@ -164,7 +164,7 @@ class AzureOpenAI_LLMs implements INode {
         const bestOf = nodeData.inputs?.bestOf as string
         const streaming = nodeData.inputs?.streaming as boolean
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const azureOpenAIApiKey = getCredentialParam('azureOpenAIApiKey', credentialData, nodeData)
         const azureOpenAIApiInstanceName = getCredentialParam('azureOpenAIApiInstanceName', credentialData, nodeData)
         const azureOpenAIApiDeploymentName = getCredentialParam('azureOpenAIApiDeploymentName', credentialData, nodeData)

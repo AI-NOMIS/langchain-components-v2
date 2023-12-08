@@ -146,7 +146,7 @@ class Qdrant_VectorStores implements INode {
             const qdrantSimilarity = nodeData.inputs?.qdrantSimilarity
             const qdrantVectorDimension = nodeData.inputs?.qdrantVectorDimension
 
-            const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+            const credentialData = options.credentialData
             const qdrantApiKey = getCredentialParam('qdrantApiKey', credentialData, nodeData)
 
             const client = new QdrantClient({
@@ -195,7 +195,7 @@ class Qdrant_VectorStores implements INode {
 
         const k = topK ? parseFloat(topK) : 4
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const qdrantApiKey = getCredentialParam('qdrantApiKey', credentialData, nodeData)
 
         const client = new QdrantClient({

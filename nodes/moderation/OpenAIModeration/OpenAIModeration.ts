@@ -43,7 +43,7 @@ class OpenAIModeration implements INode {
     }
 
     async init(nodeData: INodeData, _: string, options: ICommonObject): Promise<any> {
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const openAIApiKey = getCredentialParam('openAIApiKey', credentialData, nodeData)
 
         const runner = new OpenAIModerationRunner(openAIApiKey)

@@ -33,7 +33,7 @@ class BraveSearchAPI_Tools implements INode {
     }
 
     async init(nodeData: INodeData, _: string, options: ICommonObject): Promise<any> {
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const braveApiKey = getCredentialParam('braveApiKey', credentialData, nodeData)
         return new BraveSearch({ apiKey: braveApiKey })
     }

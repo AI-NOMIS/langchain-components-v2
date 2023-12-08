@@ -33,7 +33,7 @@ class SerpAPI_Tools implements INode {
     }
 
     async init(nodeData: INodeData, _: string, options: ICommonObject): Promise<any> {
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const serpApiKey = getCredentialParam('serpApiKey', credentialData, nodeData)
         return new SerpAPI(serpApiKey)
     }

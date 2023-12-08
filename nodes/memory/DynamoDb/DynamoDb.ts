@@ -110,7 +110,7 @@ const initalizeDynamoDB = async (nodeData: INodeData, options: ICommonObject): P
     let isSessionIdUsingChatMessageId = false
     if (!sessionId && chatId) isSessionIdUsingChatMessageId = true
 
-    const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+    const credentialData = options.credentialData
     const accessKeyId = getCredentialParam('accessKey', credentialData, nodeData)
     const secretAccessKey = getCredentialParam('secretAccessKey', credentialData, nodeData)
 

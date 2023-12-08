@@ -105,7 +105,7 @@ class Github_DocumentLoaders implements INode {
         const maxRetries = nodeData.inputs?.maxRetries as string
         const ignorePath = nodeData.inputs?.ignorePath as string
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const accessToken = getCredentialParam('accessToken', credentialData, nodeData)
 
         const githubOptions: GithubRepoLoaderParams = {

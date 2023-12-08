@@ -102,7 +102,7 @@ class Zep_Upsert_VectorStores implements INode {
         const k = topK ? parseFloat(topK) : 4
         const output = nodeData.outputs?.output as string
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const apiKey = getCredentialParam('apiKey', credentialData, nodeData)
 
         const flattenDocs = docs && docs.length ? flatten(docs) : []

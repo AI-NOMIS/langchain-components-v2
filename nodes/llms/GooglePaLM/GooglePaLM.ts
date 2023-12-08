@@ -134,7 +134,7 @@ class GooglePaLM_LLMs implements INode {
         const stopSequencesObj = nodeData.inputs?.stopSequencesObj
         const cache = nodeData.inputs?.cache as BaseCache
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const googleMakerSuiteKey = getCredentialParam('googleMakerSuiteKey', credentialData, nodeData)
 
         const obj: Partial<GooglePaLMTextInput> = {

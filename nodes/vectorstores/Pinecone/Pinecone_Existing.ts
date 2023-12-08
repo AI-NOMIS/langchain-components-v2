@@ -93,7 +93,7 @@ class Pinecone_Existing_VectorStores implements INode {
         const topK = nodeData.inputs?.topK as string
         const k = topK ? parseFloat(topK) : 4
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const pineconeApiKey = getCredentialParam('pineconeApiKey', credentialData, nodeData)
         const pineconeEnv = getCredentialParam('pineconeEnv', credentialData, nodeData)
 

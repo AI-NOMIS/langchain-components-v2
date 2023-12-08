@@ -98,7 +98,7 @@ class VectaraUpload_VectorStores implements INode {
         ]
     }
     async init(nodeData: INodeData, _: string, options: ICommonObject): Promise<any> {
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const apiKey = getCredentialParam('apiKey', credentialData, nodeData)
         const customerId = getCredentialParam('customerID', credentialData, nodeData)
         const corpusId = getCredentialParam('corpusID', credentialData, nodeData).split(',')

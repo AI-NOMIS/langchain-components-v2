@@ -105,7 +105,7 @@ class ChatGooglePaLM_ChatModels implements INode {
         const topK = nodeData.inputs?.topK as string
         const cache = nodeData.inputs?.cache as BaseCache
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const googleMakerSuiteKey = getCredentialParam('googleMakerSuiteKey', credentialData, nodeData)
 
         const obj: Partial<GooglePaLMChatInput> = {

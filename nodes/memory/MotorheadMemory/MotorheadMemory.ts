@@ -94,7 +94,7 @@ const initalizeMotorhead = async (nodeData: INodeData, options: ICommonObject): 
     let isSessionIdUsingChatMessageId = false
     if (!sessionId && chatId) isSessionIdUsingChatMessageId = true
 
-    const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+    const credentialData = options.credentialData
     const apiKey = getCredentialParam('apiKey', credentialData, nodeData)
     const clientId = getCredentialParam('clientId', credentialData, nodeData)
 

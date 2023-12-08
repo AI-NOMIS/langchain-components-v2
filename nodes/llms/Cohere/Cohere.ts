@@ -93,7 +93,7 @@ class Cohere_LLMs implements INode {
         const modelName = nodeData.inputs?.modelName as string
         const maxTokens = nodeData.inputs?.maxTokens as string
         const cache = nodeData.inputs?.cache as BaseCache
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const cohereApiKey = getCredentialParam('cohereApiKey', credentialData, nodeData)
 
         const obj: CohereInput = {

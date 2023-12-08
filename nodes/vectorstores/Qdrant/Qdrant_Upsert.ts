@@ -138,7 +138,7 @@ class QdrantUpsert_VectorStores implements INode {
         const k = topK ? parseFloat(topK) : 4
         let queryFilter = nodeData.inputs?.qdrantFilter
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const qdrantApiKey = getCredentialParam('qdrantApiKey', credentialData, nodeData)
 
         const client = new QdrantClient({

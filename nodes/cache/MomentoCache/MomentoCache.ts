@@ -34,7 +34,7 @@ class MomentoCache implements INode {
     }
 
     async init(nodeData: INodeData, _: string, options: ICommonObject): Promise<any> {
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const apiKey = getCredentialParam('momentoApiKey', credentialData, nodeData)
         const cacheName = getCredentialParam('momentoCache', credentialData, nodeData)
 

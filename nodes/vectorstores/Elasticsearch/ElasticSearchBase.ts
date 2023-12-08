@@ -105,7 +105,7 @@ export abstract class ElasticSearchBase {
     ): Promise<VectorStore>
 
     async init(nodeData: INodeData, _: string, options: ICommonObject, docs: Document<Record<string, any>>[] | undefined): Promise<any> {
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const endPoint = getCredentialParam('endpoint', credentialData, nodeData)
         const cloudId = getCredentialParam('cloudId', credentialData, nodeData)
         const indexName = nodeData.inputs?.indexName as string

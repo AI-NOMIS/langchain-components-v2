@@ -117,7 +117,7 @@ export abstract class MongoDBSearchBase {
     ): Promise<VectorStore>
 
     async init(nodeData: INodeData, _: string, options: ICommonObject, docs: Document<Record<string, any>>[] | undefined): Promise<any> {
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const databaseName = nodeData.inputs?.databaseName as string
         const collectionName = nodeData.inputs?.collectionName as string
         const indexName = nodeData.inputs?.indexName as string

@@ -118,7 +118,7 @@ class Redis_VectorStores implements INode {
     //@ts-ignore
     vectorStoreMethods = {
         async upsert(nodeData: INodeData, options: ICommonObject): Promise<void> {
-            const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+            const credentialData = options.credentialData
             const indexName = nodeData.inputs?.indexName as string
             let contentKey = nodeData.inputs?.contentKey as string
             let metadataKey = nodeData.inputs?.metadataKey as string
@@ -190,7 +190,7 @@ class Redis_VectorStores implements INode {
     }
 
     async init(nodeData: INodeData, _: string, options: ICommonObject): Promise<any> {
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const indexName = nodeData.inputs?.indexName as string
         let contentKey = nodeData.inputs?.contentKey as string
         let metadataKey = nodeData.inputs?.metadataKey as string

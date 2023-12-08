@@ -58,7 +58,7 @@ class NotionDB_DocumentLoaders implements INode {
         const databaseId = nodeData.inputs?.databaseId as string
         const metadata = nodeData.inputs?.metadata
 
-        const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+        const credentialData = options.credentialData
         const notionIntegrationToken = getCredentialParam('notionIntegrationToken', credentialData, nodeData)
 
         const obj: NotionAPILoaderOptions = {
