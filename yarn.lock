@@ -4878,16 +4878,10 @@ langfuse-langchain@^1.0.31:
   dependencies:
     langchain "^0.0.157"
 
-langsmith@^0.0.32:
-  version "0.0.32"
-  resolved "https://registry.yarnpkg.com/langsmith/-/langsmith-0.0.32.tgz#8a36cad67660df031d980f4d839d138f555beb34"
-  integrity sha512-Q9Ozp14Q4IV7iqDs3xlHl8uL9ZjmQ5WOdXQJKE+Zmv2L/M8oePU8N9uClNKCTjtJbYLXgCAVan4erWXSX4qK3Q==
-  dependencies:
-    "@types/uuid" "^9.0.1"
-    commander "^10.0.1"
-    p-queue "^6.6.2"
-    p-retry "4"
-    uuid "^9.0.0"
+langfuse@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/langfuse/-/langfuse-1.2.0.tgz#5a0fac480688b76d075075141e21e3e9bb4a0ad8"
+  integrity sha512-gi9ccbQNKqS9OSwPsSiFLj7QO9+SVO12Gfj4Y5Xh50IIvmSCRqbAsijs96fAHibvHxh2ZhoqRVhnUZFoCBC2/Q==
 
 langsmith@^0.0.48:
   version "0.0.48"
@@ -4900,7 +4894,7 @@ langsmith@^0.0.48:
     p-retry "4"
     uuid "^9.0.0"
 
-langsmith@~0.0.31, langsmith@~0.0.48:
+langsmith@^0.0.49, langsmith@~0.0.31, langsmith@~0.0.48:
   version "0.0.49"
   resolved "https://registry.yarnpkg.com/langsmith/-/langsmith-0.0.49.tgz#6b19298db6ca37a583ca05b25b5271674e9258b7"
   integrity sha512-TC2RkjDizxtubClLNjLkB0m53NHtom9LHIhbdRYJ5O6gqUpcXkN/pefb8w734lBp9VYfnYBk/JJ8AiCq+ooeDQ==
