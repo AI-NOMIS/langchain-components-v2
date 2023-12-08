@@ -64,7 +64,7 @@ class OpenAIFunctionAgent_Agents implements INode {
 
         const executor = await initializeAgentExecutorWithOptions(tools, model, {
             agentType: 'openai-functions',
-            verbose: process.env.DEBUG === 'true' ? true : false,
+             ,
             agentArgs: {
                 prefix: systemMessage ?? `You are a helpful AI assistant.`
             }

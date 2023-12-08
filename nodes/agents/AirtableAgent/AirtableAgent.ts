@@ -135,8 +135,7 @@ json.dumps(my_dict)`
         if (dataframeColDict) {
             const chain = new LLMChain({
                 llm: model,
-                prompt: PromptTemplate.fromTemplate(systemPrompt),
-                verbose: process.env.DEBUG === 'true' ? true : false
+                prompt: PromptTemplate.fromTemplate(systemPrompt)
             })
             const inputs = {
                 dict: dataframeColDict,
@@ -161,8 +160,7 @@ json.dumps(my_dict)`
         if (finalResult) {
             const chain = new LLMChain({
                 llm: model,
-                prompt: PromptTemplate.fromTemplate(finalSystemPrompt),
-                verbose: process.env.DEBUG === 'true' ? true : false
+                prompt: PromptTemplate.fromTemplate(finalSystemPrompt)
             })
             const inputs = {
                 question: input,

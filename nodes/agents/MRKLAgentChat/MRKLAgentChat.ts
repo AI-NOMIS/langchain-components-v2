@@ -47,7 +47,7 @@ class MRKLAgentChat_Agents implements INode {
         tools = flatten(tools)
         const executor = await initializeAgentExecutorWithOptions(tools, model, {
             agentType: 'chat-zero-shot-react-description',
-            verbose: process.env.DEBUG === 'true' ? true : false
+             
         })
         return executor
     }

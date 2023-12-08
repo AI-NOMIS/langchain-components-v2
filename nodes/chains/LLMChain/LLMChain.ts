@@ -96,7 +96,6 @@ class LLMChain_Chains implements INode {
                 llm: model,
                 outputParser: this.outputParser as BaseLLMOutputParser<string | object>,
                 prompt,
-                verbose: process.env.DEBUG === 'true'
             })
             return chain
         } else if (output === 'outputPrediction') {
@@ -104,7 +103,6 @@ class LLMChain_Chains implements INode {
                 llm: model,
                 outputParser: this.outputParser as BaseLLMOutputParser<string | object>,
                 prompt,
-                verbose: process.env.DEBUG === 'true'
             })
             const inputVariables = chain.prompt.inputVariables as string[] // ["product"]
             const res = await runPrediction(inputVariables, chain, input, promptValues, options, nodeData)

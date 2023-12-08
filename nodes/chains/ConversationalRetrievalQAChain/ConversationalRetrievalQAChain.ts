@@ -107,7 +107,7 @@ class ConversationalRetrievalQAChain_Chains implements INode {
         const externalMemory = nodeData.inputs?.memory
 
         const obj: any = {
-            verbose: process.env.DEBUG === 'true' ? true : false,
+             ,
             questionGeneratorChainOptions: {
                 template: CUSTOM_QUESTION_GENERATOR_CHAIN_PROMPT
             }

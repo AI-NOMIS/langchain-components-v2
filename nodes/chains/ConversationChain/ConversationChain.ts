@@ -89,7 +89,7 @@ class ConversationChain_Chains implements INode {
         const obj: any = {
             llm: model,
             memory,
-            verbose: process.env.DEBUG === 'true' ? true : false
+             
         }
 
         const chatPrompt = ChatPromptTemplate.fromMessages([

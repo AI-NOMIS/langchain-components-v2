@@ -79,69 +79,69 @@ export class ConsoleCallbackHandler extends BaseTracer {
 
     onChainStart(run: Run) {
         const crumbs = this.getBreadcrumbs(run)
-        this.logger.verbose(`[chain/start] [${crumbs}] Entering Chain run with input: ${tryJsonStringify(run.inputs, '[inputs]')}`)
+        // this.logger.verbose(`[chain/start] [${crumbs}] Entering Chain run with input: ${tryJsonStringify(run.inputs, '[inputs]')}`)
     }
 
     onChainEnd(run: Run) {
         const crumbs = this.getBreadcrumbs(run)
-        this.logger.verbose(
-            `[chain/end] [${crumbs}] [${elapsed(run)}] Exiting Chain run with output: ${tryJsonStringify(run.outputs, '[outputs]')}`
-        )
+        // this.logger.verbose(
+        //     `[chain/end] [${crumbs}] [${elapsed(run)}] Exiting Chain run with output: ${tryJsonStringify(run.outputs, '[outputs]')}`
+        // )
     }
 
     onChainError(run: Run) {
         const crumbs = this.getBreadcrumbs(run)
-        this.logger.verbose(
-            `[chain/error] [${crumbs}] [${elapsed(run)}] Chain run errored with error: ${tryJsonStringify(run.error, '[error]')}`
-        )
+        // this.logger.verbose(
+        //     `[chain/error] [${crumbs}] [${elapsed(run)}] Chain run errored with error: ${tryJsonStringify(run.error, '[error]')}`
+        // )
     }
 
     onLLMStart(run: Run) {
         const crumbs = this.getBreadcrumbs(run)
         const inputs = 'prompts' in run.inputs ? { prompts: (run.inputs.prompts as string[]).map((p) => p.trim()) } : run.inputs
-        this.logger.verbose(`[llm/start] [${crumbs}] Entering LLM run with input: ${tryJsonStringify(inputs, '[inputs]')}`)
+        // this.logger.verbose(`[llm/start] [${crumbs}] Entering LLM run with input: ${tryJsonStringify(inputs, '[inputs]')}`)
     }
 
     onLLMEnd(run: Run) {
         const crumbs = this.getBreadcrumbs(run)
-        this.logger.verbose(
-            `[llm/end] [${crumbs}] [${elapsed(run)}] Exiting LLM run with output: ${tryJsonStringify(run.outputs, '[response]')}`
-        )
+        // this.logger.verbose(
+        //     `[llm/end] [${crumbs}] [${elapsed(run)}] Exiting LLM run with output: ${tryJsonStringify(run.outputs, '[response]')}`
+        // )
     }
 
     onLLMError(run: Run) {
         const crumbs = this.getBreadcrumbs(run)
-        this.logger.verbose(
-            `[llm/error] [${crumbs}] [${elapsed(run)}] LLM run errored with error: ${tryJsonStringify(run.error, '[error]')}`
-        )
+        // this.logger.verbose(
+        //     `[llm/error] [${crumbs}] [${elapsed(run)}] LLM run errored with error: ${tryJsonStringify(run.error, '[error]')}`
+        // )
     }
 
     onToolStart(run: Run) {
         const crumbs = this.getBreadcrumbs(run)
-        this.logger.verbose(`[tool/start] [${crumbs}] Entering Tool run with input: "${run.inputs.input?.trim()}"`)
+        // this.logger.verbose(`[tool/start] [${crumbs}] Entering Tool run with input: "${run.inputs.input?.trim()}"`)
     }
 
     onToolEnd(run: Run) {
         const crumbs = this.getBreadcrumbs(run)
-        this.logger.verbose(`[tool/end] [${crumbs}] [${elapsed(run)}] Exiting Tool run with output: "${run.outputs?.output?.trim()}"`)
+        // this.logger.verbose(`[tool/end] [${crumbs}] [${elapsed(run)}] Exiting Tool run with output: "${run.outputs?.output?.trim()}"`)
     }
 
     onToolError(run: Run) {
         const crumbs = this.getBreadcrumbs(run)
-        this.logger.verbose(
-            `[tool/error] [${crumbs}] [${elapsed(run)}] Tool run errored with error: ${tryJsonStringify(run.error, '[error]')}`
-        )
+        // this.logger.verbose(
+        //     `[tool/error] [${crumbs}] [${elapsed(run)}] Tool run errored with error: ${tryJsonStringify(run.error, '[error]')}`
+        // )
     }
 
     onAgentAction(run: Run) {
         const agentRun = run as AgentRun
         const crumbs = this.getBreadcrumbs(run)
-        this.logger.verbose(
-            `[agent/action] [${crumbs}] Agent selected action: ${tryJsonStringify(
-                agentRun.actions[agentRun.actions.length - 1],
-                '[action]'
-            )}`
-        )
+        // this.logger.verbose(
+        //     `[agent/action] [${crumbs}] Agent selected action: ${tryJsonStringify(
+        //         agentRun.actions[agentRun.actions.length - 1],
+        //         '[action]'
+        //     )}`
+        // )
     }
 }
 

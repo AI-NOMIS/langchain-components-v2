@@ -94,7 +94,7 @@ const initChain = async (nodeData: INodeData) => {
     return await createOpenAPIChain(yamlString, {
         llm: model,
         headers: typeof headers === 'object' ? headers : headers ? JSON.parse(headers) : {},
-        verbose: process.env.DEBUG === 'true' ? true : false
+         
     })
 }
 
