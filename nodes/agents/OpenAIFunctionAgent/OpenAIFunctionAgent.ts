@@ -64,7 +64,6 @@ class OpenAIFunctionAgent_Agents implements INode {
 
         const executor = await initializeAgentExecutorWithOptions(tools, model, {
             agentType: 'openai-functions',
-             ,
             agentArgs: {
                 prefix: systemMessage ?? `You are a helpful AI assistant.`
             }
@@ -87,7 +86,7 @@ class OpenAIFunctionAgent_Agents implements INode {
             }
         }
 
-        ;(executor.memory as any).returnMessages = true // Return true for BaseChatModel
+        (executor.memory as any).returnMessages = true // Return true for BaseChatModel
 
         const loggerHandler = new ConsoleCallbackHandler(options.logger)
         const callbacks = await additionalCallbacks(nodeData, options)

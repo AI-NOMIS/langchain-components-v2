@@ -115,7 +115,6 @@ const getAPIChain = async (documents: string, llm: BaseLanguageModel, headers: s
     const chain = APIChain.fromLLMAndAPIDocs(llm, documents, {
         apiUrlPrompt,
         apiResponsePrompt,
-         ,
         headers: typeof headers === 'object' ? headers : headers ? JSON.parse(headers) : {}
     })
     return chain

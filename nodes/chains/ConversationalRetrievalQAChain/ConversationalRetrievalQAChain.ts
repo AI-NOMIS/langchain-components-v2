@@ -107,7 +107,6 @@ class ConversationalRetrievalQAChain_Chains implements INode {
         const externalMemory = nodeData.inputs?.memory
 
         const obj: any = {
-             ,
             questionGeneratorChainOptions: {
                 template: CUSTOM_QUESTION_GENERATOR_CHAIN_PROMPT
             }
@@ -182,7 +181,7 @@ class ConversationalRetrievalQAChain_Chains implements INode {
             const chatHistoryClassName = (chain.memory as any).chatHistory.constructor.name
             // Only replace when its In-Memory
             if (chatHistoryClassName && chatHistoryClassName === 'ChatMessageHistory') {
-                ;(chain.memory as any).chatHistory = mapChatHistory(options)
+                (chain.memory as any).chatHistory = mapChatHistory(options)
             }
         }
 

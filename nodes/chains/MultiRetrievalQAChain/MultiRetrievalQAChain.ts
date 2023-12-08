@@ -64,7 +64,7 @@ class MultiRetrievalQAChain_Chains implements INode {
             retrieverNames,
             retrieverDescriptions,
             retrievers,
-            retrievalQAChainOpts: {  , returnSourceDocuments }
+            retrievalQAChainOpts: { returnSourceDocuments }
         })
         return chain
     }

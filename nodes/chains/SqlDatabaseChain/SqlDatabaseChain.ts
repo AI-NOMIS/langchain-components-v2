@@ -212,7 +212,6 @@ const getSQLDBChain = async (
     const obj: SqlDatabaseChainInput = {
         llm,
         database: db,
-         ,
         topK: topK
     }
 
