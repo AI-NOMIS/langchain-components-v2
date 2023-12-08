@@ -145,8 +145,8 @@ class Pinecone_VectorStores implements INode {
         const k = topK ? parseFloat(topK) : 4
 
         const credentialData = options.credentialData
-        const pineconeApiKey = getCredentialParam('pineconeApiKey', credentialData, nodeData)
-        const pineconeEnv = getCredentialParam('pineconeEnv', credentialData, nodeData)
+        const pineconeApiKey = credentialData == null ? options.apiKey : getCredentialParam('pineconeApiKey', credentialData, nodeData)
+        const pineconeEnv = credentialData == null ? options.pineconeEnv : getCredentialParam('pineconeEnv', credentialData, nodeData)
 
         const client = new Pinecone({
             apiKey: pineconeApiKey,
