@@ -1,46 +1,14 @@
-# editor
-.idea
-.vscode
-
-# dependencies
-**/node_modules
-**/package-lock.json
-**/yarn.lock
-
-## logs
-**/logs
-**/*.log
-
-## build
-**/dist
-**/build
-
-## temp
-**/tmp
-**/temp
-
-## test
-**/coverage
-
-# misc
-.DS_Store
-
-## env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+node_modules
+dist
+.aws-sam
+coverage
+apidoc
+docker
 .env
-
-## turbo
-.turbo
-
-## secrets
-**/*.key
-**/api.json
-
-## uploads
-**/uploads
-
-## compressed
-**/*.tgz
+.env.*
+.DS_Store
+apidoc.json
+.vscode
+*.DS_Store
+*.png
+*.svg
