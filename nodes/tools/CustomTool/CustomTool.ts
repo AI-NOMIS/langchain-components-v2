@@ -1,8 +1,7 @@
-import { ICommonObject, IDatabaseEntity, INode, INodeData, INodeOptionsValue, INodeParams } from '../../../src/Interface'
+import { ICommonObject, INode, INodeData, INodeParams } from '../../../src/Interface'
 import { convertSchemaToZod, getBaseClasses } from '../../../src/utils'
 import { DynamicStructuredTool } from './core'
 import { z } from 'zod'
-import { DataSource } from 'typeorm'
 
 class CustomTool_Tools implements INode {
     label: string
@@ -34,43 +33,39 @@ class CustomTool_Tools implements INode {
         this.baseClasses = [this.type, 'Tool', ...getBaseClasses(DynamicStructuredTool)]
     }
 
+    // TODO: figure out what this part is for and fix/adjust
     //@ts-ignore
-    loadMethods = {
-        async listTools(_: INodeData, options: ICommonObject): Promise<INodeOptionsValue[]> {
-            const returnData: INodeOptionsValue[] = []
+    // loadMethods = {
+    //     async listTools(_: INodeData, options: ICommonObject): Promise<INodeOptionsValue[]> {
+    //         const returnData: INodeOptionsValue[] = []
 
-            const appDataSource = options.appDataSource as DataSource
-            const databaseEntities = options.databaseEntities as IDatabaseEntity
+    //         const appDataSource = options.appDataSource as DataSource
+    //         const databaseEntities = options.databaseEntities as IDatabaseEntity
 
-            if (appDataSource === undefined || !appDataSource) {
-                return returnData
-            }
+    //         if (appDataSource === undefined || !appDataSource) {
+    //             return returnData
+    //         }
 
-            const tools = await appDataSource.getRepository(databaseEntities['Tool']).find()
+    //         const tools = await appDataSource.getRepository(databaseEntities['Tool']).find()
 
-            for (let i = 0; i < tools.length; i += 1) {
-                const data = {
-                    label: tools[i].name,
-                    name: tools[i].id,
-                    description: tools[i].description
-                } as INodeOptionsValue
-                returnData.push(data)
-            }
-            return returnData
-        }
-    }
+    //         for (let i = 0; i < tools.length; i += 1) {
+    //             const data = {
+    //                 label: tools[i].name,
+    //                 name: tools[i].id,
+    //                 description: tools[i].description
+    //             } as INodeOptionsValue
+    //             returnData.push(data)
+    //         }
+    //         return returnData
+    //     }
+    // }
 
     async init(nodeData: INodeData, _: string, options: ICommonObject): Promise<any> {
         const selectedToolId = nodeData.inputs?.selectedTool as string
         const customToolFunc = nodeData.inputs?.customToolFunc as string
 
-        const appDataSource = options.appDataSource as DataSource
-        const databaseEntities = options.databaseEntities as IDatabaseEntity
-
         try {
-            const tool = await appDataSource.getRepository(databaseEntities['Tool']).findOneBy({
-                id: selectedToolId
-            })
+            const tool = options.tool
 
             if (!tool) throw new Error(`Tool ${selectedToolId} not found`)
             const obj = {
