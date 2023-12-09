@@ -170,7 +170,7 @@ class SqlDatabaseChain_Chains implements INode {
     async run(nodeData: INodeData, input: string, options: ICommonObject): Promise<string> {
         const databaseType = nodeData.inputs?.database as DatabaseType
         const model = nodeData.inputs?.model as BaseLanguageModel
-        const url = this.getSQLiteDBPath(options.userId)
+        const url = options.isFlowReused ? this.fetchSQLiteDB(options.userId, nodeData.inputs?.url as string) : this.getSQLiteDBPath(options.userId)
         const includesTables = nodeData.inputs?.includesTables
         const splittedIncludesTables = includesTables == '' ? undefined : includesTables?.split(',')
         const ignoreTables = nodeData.inputs?.ignoreTables
