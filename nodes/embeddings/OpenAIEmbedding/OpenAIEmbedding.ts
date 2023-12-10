@@ -1,5 +1,5 @@
 import { ICommonObject, INode, INodeData, INodeParams } from '../../../src/Interface'
-import { getBaseClasses, getCredentialData, getCredentialParam } from '../../../src/utils'
+import { getBaseClasses, getCredentialParam } from '../../../src/utils'
 import { OpenAIEmbeddings, OpenAIEmbeddingsParams } from 'langchain/embeddings/openai'
 
 class OpenAIEmbedding_Embeddings implements INode {
@@ -68,7 +68,7 @@ class OpenAIEmbedding_Embeddings implements INode {
         const basePath = nodeData.inputs?.basepath as string
 
         const credentialData = options.credentialData
-        const openAIApiKey = getCredentialParam('openAIApiKey', credentialData, nodeData)
+        const openAIApiKey = credentialData == null ? options.apiKey : getCredentialParam('openAIApiKey', credentialData, nodeData)
 
         const obj: Partial<OpenAIEmbeddingsParams> & { openAIApiKey?: string } = {
             openAIApiKey
