@@ -7,8 +7,6 @@ import { BaseLanguageModel } from 'langchain/base_language'
 import { PromptTemplate, PromptTemplateInput } from 'langchain/prompts'
 import { ConsoleCallbackHandler, CustomChainHandler, additionalCallbacks } from '../../../src/handler'
 import { DataSourceOptions } from 'typeorm/data-source'
-import { spawnSync } from 'child_process'
-
 type DatabaseType = 'sqlite' | 'postgres' | 'mssql' | 'mysql'
 
 class SqlDatabaseChain_Chains implements INode {
@@ -71,7 +69,7 @@ class SqlDatabaseChain_Chains implements INode {
                 label: 'Include Tables',
                 name: 'includesTables',
                 type: 'string',
-                description: 'Tables to include for queries, seperated by comma. Can only use Include Tables or Ignore Tables',
+                description: 'Tables to include for queries, separated by comma. Can only use Include Tables or Ignore Tables',
                 placeholder: 'table1, table2',
                 additionalParams: true,
                 optional: true
@@ -80,7 +78,7 @@ class SqlDatabaseChain_Chains implements INode {
                 label: 'Ignore Tables',
                 name: 'ignoreTables',
                 type: 'string',
-                description: 'Tables to ignore for queries, seperated by comma. Can only use Ignore Tables or Include Tables',
+                description: 'Tables to ignore for queries, separated by comma. Can only use Ignore Tables or Include Tables',
                 placeholder: 'table1, table2',
                 additionalParams: true,
                 optional: true
@@ -120,32 +118,10 @@ class SqlDatabaseChain_Chains implements INode {
         ]
     }
 
-
-    getSQLiteDBPath(userId: string): string {
-        const absPath = spawnSync('pwd', {
-            encoding: 'utf-8',
-        });
-        return `${absPath.stdout.toString().replace(/[\r\n]+/gm, '')}/${userId}.db`;
-    }
-
-    fetchSQLiteDB(userId: string, dbUrl: string): string {
-        const dbName = `${userId}.db`
-        const curl = spawnSync("curl", ["-s", dbUrl, "-o", dbName]);
-        if (curl.status === 0) {
-            return this.getSQLiteDBPath(userId)
-        }
-        throw new Error("Couldn't fetch the provided sqlite file")
-    }
-
-    removeSQLiteDB(dbPath: string): number | null {
-        const rm = spawnSync("rm", [dbPath]);
-        return rm.status
-    }
-
-    async init(nodeData: INodeData, _: string, options: ICommonObject): Promise<any> {
+    async init(nodeData: INodeData): Promise<any> {
         const databaseType = nodeData.inputs?.database as DatabaseType
         const model = nodeData.inputs?.model as BaseLanguageModel
-        const url = this.fetchSQLiteDB(options.userId, nodeData.inputs?.url as string) //currently passing userId in the inputs, might not be a good idea
+        const url = nodeData.inputs?.url as string
         const includesTables = nodeData.inputs?.includesTables
         const splittedIncludesTables = includesTables == '' ? undefined : includesTables?.split(',')
         const ignoreTables = nodeData.inputs?.ignoreTables
@@ -167,10 +143,10 @@ class SqlDatabaseChain_Chains implements INode {
         return chain
     }
 
-    async run(nodeData: INodeData, input: string, options: ICommonObject): Promise<string> {
+    async run(nodeData: INodeData, input: string, options: ICommonObject): Promise<string | object> {
         const databaseType = nodeData.inputs?.database as DatabaseType
         const model = nodeData.inputs?.model as BaseLanguageModel
-        const url = options.isFlowReused ? this.fetchSQLiteDB(options.userId, nodeData.inputs?.url as string) : this.getSQLiteDBPath(options.userId)
+        const url = nodeData.inputs?.url as string
         const includesTables = nodeData.inputs?.includesTables
         const splittedIncludesTables = includesTables == '' ? undefined : includesTables?.split(',')
         const ignoreTables = nodeData.inputs?.ignoreTables
@@ -195,11 +171,9 @@ class SqlDatabaseChain_Chains implements INode {
         if (options.socketIO && options.socketIOClientId) {
             const handler = new CustomChainHandler(options.socketIO, options.socketIOClientId, 2)
             const res = await chain.run(input, [loggerHandler, handler, ...callbacks])
-            this.removeSQLiteDB(url)
             return res
         } else {
             const res = await chain.run(input, [loggerHandler, ...callbacks])
-            this.removeSQLiteDB(url)
             return res
         }
     }

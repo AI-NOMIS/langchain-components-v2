@@ -32,7 +32,7 @@
     "@supabase/supabase-js": "^2.29.0",
     "@types/js-yaml": "^4.0.5",
     "@types/jsdom": "^21.1.1",
-    "@upstash/redis": "^1.22.1",
+    "@upstash/redis": "1.22.1",
     "@zilliz/milvus2-sdk-node": "^2.2.24",
     "apify-client": "^2.7.1",
     "axios": "^0.27.2",
@@ -72,13 +72,12 @@
     "redis": "4.6.11",
     "replicate": "0.12.3",
     "socket.io": "^4.7.2",
-    "sqlite3": "^5.1.6",
     "srt-parser-2": "^1.2.3",
     "typeorm": "^0.3.17",
     "vm2": "^3.9.19",
     "weaviate-ts-client": "^1.1.0",
     "ws": "^8.9.0",
-    "zod-to-json-schema": "3.21.4"
+    "zod-to-json-schema": "^3.21.4"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.2.1",
