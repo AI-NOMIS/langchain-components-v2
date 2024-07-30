@@ -28,7 +28,7 @@ const availableDependencies = [
     'pdf-parse',
     'pdfjs-dist',
     'playwright',
-    'puppeteer',
+    // 'puppeteer',
     'srt-parser-2',
     'typeorm',
     'weaviate-ts-client'
